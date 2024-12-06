@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
 
 export default class Count extends Component {
-  state = { count: 0 }
+
+  state = { carName: "奔驰" }
+
   increment = () => {
-    let { count } = this.state;
     let { value } = this.selectNumber;
-    this.setState({ count: count + value*1 })
+    this.props.jia(value*1)
   }
   decrement = () => {
-    let { count } = this.state;
     let { value } = this.selectNumber;
-    this.setState({ count: count -  parseInt(value)  })
+    this.props.jian(value*1)
   }
   // 奇数加
   incrementIfOdd = () => {
-    let { count } = this.state;
+    let count = this.props.count;
     let { value } = this.selectNumber;
     if (count % 2 !== 0) {
-      this.setState({ count: count +  parseInt(value)  })
+      this.props.jia(value*1)
     }
   }
   // 异步加
   incrementAsync = () => {
-    let { count } = this.state;
     let { value } = this.selectNumber;
-    setTimeout(()=>{
-      this.setState({ count: count +  parseInt(value)  })
-    },500)
+    this.props.jiaAsync(value*1,500)
   }
   render() {
     return (
       <div>
-        <div>当前求和为：{this.state.count}</div>
+        <h2>当前求和为：{this.props.count}</h2>
         <select ref={c => this.selectNumber = c}>
           <option value="1">1</option>
           <option value="2">2</option>
